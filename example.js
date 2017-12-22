@@ -1,11 +1,12 @@
 const tokenRequester = require('./');
 
-const baseUrl = 'http://keycloak:8180/auth';
+const baseUrl = 'http://127.0.0.1:8080/auth';
 
 const settings = {
-  'grant_type': 'client_credentials',
-  'client_id': 'zcts-ui',
-  'client_secret': '99c4c60d-03ed-486b-8021-ab43f9698673'
+  username: 'admin',
+  password: 'admi',
+  grant_type: 'password',
+  client_id: 'admin-cli'
 };
 
 (async function () {
