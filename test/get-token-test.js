@@ -13,7 +13,6 @@ test('keycloakTokenRequest should return a promise containing the access token',
   };
 
   let kca = keycloakTokenRequest(baseUrl, settings);
-
   t.equal(kca instanceof Promise, true, 'should return a Promise');
   kca.then((accessToken) => {
     t.end();
@@ -32,8 +31,8 @@ test('keycloakTokenRequest failed login, wrong user creds', (t) => {
   let kca = keycloakTokenRequest(baseUrl, settings);
 
   kca.catch((err) => {
-    t.equal(err.error_description, 'Invalid user credentials', 'error description should be invalid credentials');
-    t.equal(err.error, 'invalid_grant', 'error invalid_grant');
+    t.equal(err.body.error_description, 'Invalid user credentials', 'error description should be invalid credentials');
+    t.equal(err.body.error, 'invalid_grant', 'error invalid_grant');
     t.end();
   });
 });
@@ -50,7 +49,7 @@ test('keycloakTokenRequest wrong baseURL', (t) => {
   let kca = keycloakTokenRequest(baseUrl, settings);
 
   kca.catch((err) => {
-    t.equal(err, '<html><head><title>Error</title></head><body>404 - Not Found</body></html>', 'should return the 404 html code');
+    t.equal(err.body, '<html><head><title>Error</title></head><body>404 - Not Found</body></html>', 'should return the 404 html code');
     t.end();
   });
 });
